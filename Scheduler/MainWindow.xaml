@@ -6,7 +6,26 @@
         xmlns:local="clr-namespace:Scheduler"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <CollectionViewSource x:Key="employeesViewSource" 
+                              Source="{Binding Employees }"/>
+    </Window.Resources>
     <Grid>
-
+        <DataGrid x:Name="employeesDataGrid" AutoGenerateColumns="False" 
+          EnableRowVirtualization="True" 
+          ItemsSource="{Binding Source={StaticResource employeesViewSource}}" 
+          Margin="13,13,43,229" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}"
+                            Header="Emplyoee Id" Width="SizeToHeader"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" 
+                            Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+            Content="Save" HorizontalAlignment="Center" Margin="0,240,0,0" 
+            Click="Button_Click" Height="20" Width="123"/>
     </Grid>
+    
 </Window>
